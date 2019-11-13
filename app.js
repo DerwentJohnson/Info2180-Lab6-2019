@@ -1,16 +1,17 @@
-window.onload = function(){
-    var search = document.getElementById("search");
-    this.console.log(search)
-search.addEventListener("click",() => {
-    // var xhr = new XMLHttpRequest();
-    // xhr.onreadystatechange = () => {
-    //     console.log(this.readyState);
-    //     if (this.readyState == 4 && this.status == 200){
-    //         console.log(this.responseText);
-    //     }
-    // } 
-    // xhr.open("GET","superheroes.php?q=",true);
-    // xhr.send();
-    this.console.log("ok")
+window.onload = function() {
+var search = document.getElementById("search");
+
+search.addEventListener("click", function(event){
+    event.preventDefault();
+    var inputString = document.getElementById("input").value;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET","superheroes.php?q="+inputString,true);
+    xhr.onload = function(){
+        if(this.status == 200){
+            document.getElementById("result").innerHTML = "<ul>"+ this.responseText +"</ul>";
+            console.log("OK");
+        }
+    }
+    xhr.send();
 })
 }
