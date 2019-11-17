@@ -8,8 +8,11 @@ search.addEventListener("click", function(event){
     xhr.open("GET","superheroes.php?q="+inputString,true);
     xhr.onload = function(){
         if(this.status == 200){
-            document.getElementById("result").innerHTML = "<ul>"+ this.responseText +"</ul>";
-            console.log("OK");
+            var superhero = JSON.parse(this.response)
+            document.getElementById("alias").innerHTML = superhero.alias;
+            document.getElementById("name").innerHTML = superhero.name;
+            document.getElementById("description").innerHTML = superhero.biography;
+            
         }
     }
     xhr.send();
